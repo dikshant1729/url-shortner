@@ -46,8 +46,7 @@ app.get('/:shortId' , async (req,res) => {
     } }
     );
     if(entry===null){
-        res.send("oyeee")
-        console.log('kya kr rha hai bhai')
+       console.log('null entry')
     }
     else {res.redirect(entry.redirectURL)}
 })
