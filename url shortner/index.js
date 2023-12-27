@@ -27,12 +27,15 @@ app.get('/test' ,async (req,res) =>{
     </head>
     </html>
     `)
+
 })
+
+
 
 app.use('/url' , urlRoute)
 
 app.get('/:shortId' , async (req,res) => {
-    console.log('hi')
+   
     const shortId = req.params.shortId;
     const entry = await URL.findOneAndUpdate({
         shortId
@@ -42,7 +45,11 @@ app.get('/:shortId' , async (req,res) => {
         }
     } }
     );
-    res.redirect(entry.redirectURL)
+    if(entry===null){
+        res.send("oyeee")
+        console.log('kya kr rha hai bhai')
+    }
+    else {res.redirect(entry.redirectURL)}
 })
 
 
