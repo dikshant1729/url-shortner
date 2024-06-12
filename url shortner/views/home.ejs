@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home page</title>
+   
+      
 </head>
+
 <body>
     <h1>URL shortner</h1>
+   <% if(!cookie){ %>
+        <button onclick=`<%handleUserLogin%>`>Login</button>
+        <button>Sign up</button>
+   <% } %>
     <% if (locals.id) { %>
     <p>URL Generated: http://localhost:8001/url/<%= id %></p>
     <% } %>
@@ -44,4 +51,9 @@
         <% } %>
     </div>
 </body>
+
+<script>
+    const loginHandler = new Function('return handleUserLogin()');
+  </script>
+
 </html>

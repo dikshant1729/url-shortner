@@ -1,7 +1,11 @@
 const jwt = require('jsonwebtoken')
 const secret = 'diksha@123$' || process.env.SECRET
+
+
  function setUser(user){
+
     const token = jwt.sign(user.toJSON(), secret)
+    
     return token
  }
 
