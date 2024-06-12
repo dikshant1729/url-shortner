@@ -8,7 +8,7 @@ const staticRoute = require('./routes/staticRouter')
 
 
 const app = express();
-const PORT = 8001;
+const PORT = process.env.PORT || 8001;
 const mongoURL = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/short-url';
 
 connectToMongoDB(mongoURL)
