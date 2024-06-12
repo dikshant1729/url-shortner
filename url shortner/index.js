@@ -12,7 +12,7 @@ const PORT = 8001;
 const mongoURL = 'mongodb://127.0.0.1:27017/short-url';
 
 if(process.env.MONGO_URL){
-    mongoURL = `${process.env.MONGO_URL}/short-url`
+    mongoURL = process.env.MONGO_URL
 }
 
 connectToMongoDB(mongoURL)
