@@ -4,43 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home page</title>
-   
-      
 </head>
 
 <body>
-    <h1>URL shortner</h1>
-   <% if(!cookie){ %>
-        <button onclick=`<%handleUserLogin%>`>Login</button>
-        <button>Sign up</button>
+    <h1>URL Shortener</h1>
+   
+   <% if (locals.cookie==null) { %>
+        <button onclick="handleUserLogin()">Login</button>
+        <button onclick="handleUserSignup()">Sign up</button>
    <% } %>
+   <% if (locals.cookie!=null) { %>
+    <button onclick="handleUserLogout()">Logout</button>
+   <% } %>
+
     <% if (locals.id) { %>
     <p>URL Generated: http://localhost:8001/url/<%= id %></p>
     <% } %>
+    <% if (locals.cookie) { %>
     <div>
-        <form method = "POST" action = "/url">
-            <label>Enter your original URL </label>
+        <form method="POST" action="/url">
+            <label>Enter your original URL</label>
             <input
-             type = "text"
-              name = "url"
-              placeholder="https://example.com"
+             type="text"
+             name="url"
+             placeholder="https://example.com"
               />
-              <button type = "submit">Generate</button>
+              <button type="submit">Generate</button>
         </form>
     </div>
+    <% } %>
+
     <div>
-        <% if(locals.urls) { %>
+        <% if (locals.urls) { %>
             <table>
                 <thead>
-                    <th>S. No</th>
-                    <th>ShortID</th>
-                    <th>Reirect</th>
-                    <th>Clicks</th>
+                    <tr>
+                        <th>S. No</th>
+                        <th>ShortID</th>
+                        <th>Redirect</th>
+                        <th>Clicks</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <% urls.forEach((url , index) => { %>
+                    <% urls.forEach((url, index) => { %>
                     <tr>
-                        <td><%= index+1 %></td>
+                        <td><%= index + 1 %></td>
                         <td><%= url.shortId %></td>
                         <td><%= url.redirectURL %></td>
                         <td><%= url.visitHistory.length %></td>
@@ -50,10 +58,17 @@
             </table>
         <% } %>
     </div>
+
+    <script>
+        function handleUserLogin() {
+            window.location.href = '/login';
+        }
+        function handleUserSignup() {
+            window.location.href = '/signup';
+        }
+        function handleUserLogout() {
+            window.location.href = '/logout';
+        }
+    </script>
 </body>
-
-<script>
-    const loginHandler = new Function('return handleUserLogin()');
-  </script>
-
 </html>

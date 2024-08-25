@@ -16,7 +16,7 @@ const secret = 'diksha@123$' || process.env.SECRET
     return jwt.verify(token,secret) 
  }
 
- module.exports ={
+ module.exports = {
     setUser,
     getUser
  }
