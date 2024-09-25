@@ -10,10 +10,10 @@ async function handleUserSignup(req,res){
     })
     const token = setUser(user)
     res.cookie('uid' , token)
-    const allUrls = await URL.find({createdBy: req.user._id})
+    // const allUrls = await URL.find({createdBy: req.user._id})
     return res.render("home" , {
         cookie: token,
-        urls: allUrls,
+        urls: [],
     })
 }
 
